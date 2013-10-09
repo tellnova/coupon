@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<?php header('Content-type: text/html;charset=utf-8');?>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">

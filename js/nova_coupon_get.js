@@ -99,31 +99,29 @@ function CreatePromotionBody(data)
 	newChild.setAttribute('data-content-theme',"d");
     newChild.id="down_contents";
 
-    // var newImgIcon==document.createElement('img');
-    // newImgIcon.setAttribute('src',"./images/icon_promotion.png");
-    // newChild.appendChild(newImgIcon);
-
     var newHeader=document.createElement('h3');
-    newHeader.innerHTML="活动详情";
+    newHeader.innerHTML=arr.prom_title;
     newChild.appendChild(newHeader); 
 
     var newTitle=document.createElement('h4');
-    newTitle.innerHTML="全场饮料买一送一";
+    newTitle.innerHTML=arr.prom_title;
     newChild.appendChild(newTitle); 
 
+    duration = arr.prom_duration.split(",");
+
     var newContent=document.createElement('p');
-    newContent.innerHTML="网上（含APP）订餐，以单品价点任一饮料后，即送指定饮料1杯。约个三五知己，午饭闲聊、下午茶小憩, 都少不了来杯悠闲饮品佐伴。多买多送哦！电话订餐除外。";
+    newContent.innerHTML=arr.prom_body;
     newContent.innerHTML+="</br></br>活动时间：";
-    newContent.innerHTML+="2013年9月9日-9月29日";
+    newContent.innerHTML+=duration[0] + " -- " + duration[1];
     newChild.appendChild(newContent); 
 
     var promParent=document.getElementById("promotion_list");
     promParent.appendChild(newChild);
 }
 
-function CreateContactBody(data)
+function CreateContactBody()
 {
-    var arr = data;
+    // var arr = data;
 
     var newChild1=document.createElement('div'); 
     newChild1.setAttribute('data-role',"collapsible");
@@ -138,10 +136,6 @@ function CreateContactBody(data)
     newChild2.setAttribute('data-theme',"c");
 	newChild2.setAttribute('data-content-theme',"d");
     newChild2.id="down_contents";
-
-    // var newImgIcon==document.createElement('img');
-    // newImgIcon.setAttribute('src',"./images/icon_promotion.png");
-    // newChild.appendChild(newImgIcon);
 
     var newHomeHeader=document.createElement('h3');
     newHomeHeader.innerHTML="会员卡说明";
