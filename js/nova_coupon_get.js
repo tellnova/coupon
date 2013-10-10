@@ -3,6 +3,16 @@ Nova coupon get func
 2013/8/13
 **/
 
+function CreateCardNum(data) {
+
+    var newCardNum = document.createElement('p');
+    newCardNum.innerHTML = data;
+    newCardNum.setAttribute('style',"margin: -35px -160px 0 0; font-family:Helvetica,Arial,sans-serif; font-style:italic; font-size:20px; font-weight:bold; color:#000000; text-shadow: 0 1px 1px rgba(0,0,0,.7) inset; text-decoration:none;");
+    var mCardContainer = document.getElementById("card_container");
+    mCardContainer.appendChild(newCardNum);
+
+}
+
 function CreateListBody(data) {  
 
     var arr = data;
@@ -103,9 +113,21 @@ function CreatePromotionBody(data)
     newHeader.innerHTML=arr.prom_title;
     newChild.appendChild(newHeader); 
 
+    if(arr.prom_status == "0"){
+        var newStatus=document.createElement('h2');
+        newStatus.innerHTML="已使用";
+        newStatus.setAttribute('style',"text-align:center");
+        newChild.appendChild(newStatus); 
+    }
+
     var newTitle=document.createElement('h4');
     newTitle.innerHTML=arr.prom_title;
+    if(arr.prom_status == "0"){
+        newTitle.setAttribute('style',"opacity:0.3");
+    }
     newChild.appendChild(newTitle); 
+
+
 
     duration = arr.prom_duration.split(",");
 
@@ -113,15 +135,18 @@ function CreatePromotionBody(data)
     newContent.innerHTML=arr.prom_body;
     newContent.innerHTML+="</br></br>活动时间：";
     newContent.innerHTML+=duration[0] + " -- " + duration[1];
+    if(arr.prom_status == "0"){
+        newContent.setAttribute('style',"opacity:0.3");
+    }
     newChild.appendChild(newContent); 
 
     var promParent=document.getElementById("promotion_list");
     promParent.appendChild(newChild);
 }
 
-function CreateContactBody()
+function CreateContactBody(data)
 {
-    // var arr = data;
+    var arr = data;
 
     var newChild1=document.createElement('div'); 
     newChild1.setAttribute('data-role',"collapsible");
@@ -142,17 +167,23 @@ function CreateContactBody()
     newChild1.appendChild(newHomeHeader); 
 
     var newContent1=document.createElement('p');
-    newContent1.innerHTML="聚美优品微信每月都有丰富的活动，并有接连不断丰厚的奖品派发给微信用户，而所有的获奖名单都是以抽取黑钻卡号为准的。独一无二的黑钻卡号避免了因微信名重复造成的领奖误会！";
+    newContent1.innerHTML=arr.card_info;
     newChild1.appendChild(newContent1); 
 
     var newContactHeader=document.createElement('h3');
     newContactHeader.innerHTML="适用门店电话及地址";
     newChild2.appendChild(newContactHeader); 
 
+    var contacts = arr.contact.split(" ");
+    var i, l=contacts.length;
+
     var newContent2=document.createElement('p');
-    newContent2.innerHTML="地址:上海市闸北区延长路";
-    newContent2.innerHTML+="</br>";    
-    newContent2.innerHTML+="电话:18810928602";
+    for(i=0; i+1<l; i++){
+        newContent2.innerHTML+="地址: " + contacts[i] + "<br>电话: " + contacts[++i];
+        if(i==l-1)
+            break;
+        newContent2.innerHTML+="<br><br>";
+    }
     newChild2.appendChild(newContent2); 
 
     var promParent=document.getElementById("contact_list");

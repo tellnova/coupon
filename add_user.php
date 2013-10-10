@@ -9,15 +9,14 @@
 
 	$cardbag = $mySQLInstance->getCardBagTableName();
 
-	$id = $_GET["id"];
-	
+	$id = trim($_GET["id"]);
+	$cardid = trim($_GET["cardid"]);
+
   	$retval=mysql_query("SELECT open_id FROM {$cardbag} WHERE open_id='{$id}'");
 
   	if(mysql_num_rows($retval)==0){
   		// echo "false";
   		mysql_query("INSERT INTO ${cardbag} (open_id) VALUES ('{$id}')");
-  	}else{
-  		// echo "true";
   	}
 
 	$mySQLInstance->close($link);

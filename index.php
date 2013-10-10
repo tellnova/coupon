@@ -63,11 +63,11 @@ function stateChanged()
 	} 
 }
 
-function checkJoinMember(id)
+function checkJoinMember(id,cardid)
 { 
 	xmlHttp=new XMLHttpRequest();
 	var url="./add_user.php";
-	url=url+"?id="+id;
+	url=url+"?id="+id+"&cardid="+cardid;
 	xmlHttp.onreadystatechange=stateChanged;
 	xmlHttp.open("GET",url,true);
 	xmlHttp.send(null);
@@ -94,7 +94,7 @@ function addCard(id, cardid)
 function addToCardBag(cardid)
 {
 	if(!isMember){
-		checkJoinMember(id);
+		checkJoinMember(id,cardid);
 	}
 	addCard(id, cardid);
 	unmask(cardid);

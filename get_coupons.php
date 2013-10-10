@@ -11,7 +11,6 @@
 	$cardbag = $mySQLInstance->getCardBagTableName();
 
 	$open_id = $_GET["id"];
-	// $isMyCard = intval($_GET["mycards"]);
 	$isMyCard = $_GET["mycards"];
 
 	mysql_query('set names utf8');
@@ -33,7 +32,6 @@
 	  			$points['inbag'] = "1";
 	  		$json_string = json_encode($points);
 			echo "CreateListBody($json_string);";
-			//echo "CreateListBody($points);"
 		}
 	}else{
 		if($mycards[0]==NULL){

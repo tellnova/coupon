@@ -40,7 +40,7 @@ document.getElementById("my_cards").setAttribute('href',"./my_cards.php?id=" + i
 
 function gotourl(cardid)
 {
-	var url="./card_details?id=" + id + "&cardid=" + cardid;
+	var url="./card_details.php?id=" + id + "&cardid=" + cardid;
 	window.location.href = url;
 }
 </script>
